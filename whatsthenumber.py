@@ -1,31 +1,33 @@
 from ast import literal_eval
 import random
 
-#Generate random number
-
+#Function to change lives and count if guessed number is wrong
 def falsche_nummer(lives, count):
     lives -= 1
     count += 1
     print(f"Falsche Nummer. Verbleibende Leben: {lives}")
     return lives, count
 
-def main():
 
+
+def main():
+#Setting start values
     min = 1
-    max = '50'
+    max = 50
     number_to_be_guessed = random.randint( min, max )
     lives = 5
     count = 0
 
     print(f"Die kleinst mögliche Zahl ist {min} und die höchste ist {max}")
 
-    while lives > 0:
+    
+
+    while lives > 0:   #Only Run when user still has lifes
 
         guess = input("Nummer eingeben: ")
 
-        if int(guess) > int(min) or int(guess) < int(max):
-
-
+        
+            #Check if guessed number is correct or not
             if int(guess) == int(number_to_be_guessed):
                 count += 1
                 print(f"Richtig. Du hast {count} Versuch/e gebraucht.")
@@ -39,14 +41,11 @@ def main():
                 lives, count = falsche_nummer(lives, count)
                 print("Tipp: Die Gesuchte Zahl ist niedriger.")
 
-
-        elif guess < min or guess > max:
-            print("Gewählte Zahl nicht im gültigen Bereich.")
-
     
     neues_spiel(lives, number_to_be_guessed, count)
             
     
+    #Function to check if player wants to play the game again
 def neues_spiel(lives, number, count):
 
     #Check if Player won or not
@@ -62,8 +61,7 @@ def neues_spiel(lives, number, count):
     else:
         quit    
 
-
-
+        
 
 if __name__ == '__main__':
     main()    
